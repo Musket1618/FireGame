@@ -30,6 +30,10 @@ public class GameMgr : MonoBehaviour
         {
             getSmoke();
         }
+        else
+        {
+            Smoke.SetActive(false);
+        }
     }
 
 
