@@ -1086,7 +1086,7 @@ MonoBehaviour:
   moveSpeed: 0.0125
   minY: 0
   maxY: 1
-  resistance: 0.0025
+  resistance: 0.00125
   decreaseRate: 0.001
   _decreaseTime: 1.5
 --- !u!1 &1623253901

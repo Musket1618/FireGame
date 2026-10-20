@@ -26,7 +26,7 @@ public class GameMgr : MonoBehaviour
             {
               Fire();
             }
-        if (fireGenerater >= 0.5)
+        if (fireGenerater >= 0.8)
         {
             getSmoke();
         }
