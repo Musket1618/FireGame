@@ -22,9 +22,9 @@ public class MakingFire : MonoBehaviour
         {
             isReadytoFire = true;
             float mouseY = Input.GetAxis("Mouse Y")* moveSpeed;
-            if (Mathf.Abs(mouseY) > 0.001f)
+            if (mouseY > 0f)
             {
-                float moveAmount = Mathf.Abs(mouseY);
+                float moveAmount = mouseY;
                 GameMgr.I.fireGenerater += moveAmount * resistance;
             }
             else
