@@ -1046,9 +1046,13 @@ MonoBehaviour:
   moveSpeed: 0.0125
   minY: 0
   maxY: 1
-  resistance: 0.05
+  resistance: 0.0125
   decreaseRate: 0.001
-  _decreaseTime: 1.5
+  decreaseTime: 0
+  dust: 0
+  mouseMoveSpeed: 0
+  woodfriction: 1
+  woodfrictiondecrese: 100
 --- !u!1 &1623253901
 GameObject:
   m_ObjectHideFlags: 0
