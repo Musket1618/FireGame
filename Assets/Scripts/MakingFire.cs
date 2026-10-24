@@ -13,11 +13,12 @@ public class MakingFire : MonoBehaviour
     public float maxY;
     public float resistance;
     public float decreaseRate;
-    public float decreaseTime;
-    public float dust;
+    public float decreaseTime;  
     public float mouseMoveSpeed;
     public float woodfriction;
     public float woodfrictiondecrese;
+
+    private bool wasAtMaxLimit = false;
 
     void Update()
     {
@@ -25,28 +26,42 @@ public class MakingFire : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             isReadytoFire = true;
-            mouseMoveSpeed = Input.GetAxis("Mouse Y");
-            float mouseY = Input.GetAxis("Mouse Y")* moveSpeed;
-            bool isAtMaxLimit = Stick.position.z >= maxY && mouseY > 0;
-            if (mouseY > 0f && !isAtMaxLimit)
+
+            // Stick 움직이기
+            float mouseStickY = Input.GetAxis("Mouse Y") * moveSpeed;
+            Vector3 targetPosition = Stick.position;
+            targetPosition.z += mouseStickY;
+            targetPosition.z = Mathf.Clamp(targetPosition.z, minY, maxY);
+            Stick.position = targetPosition;
+
+            // Dust 효과
+            float moveY = Input.GetAxis("Mouse Y");
+            mouseMoveSpeed = moveY / Time.deltaTime;
+
+            bool isAtMaxLimit = Stick.position.z >= maxY;
+            if (isAtMaxLimit && !wasAtMaxLimit)
             {
-                float moveAmount = Mathf.Clamp(mouseY, minY, maxY); ;
-                if (isAtMaxLimit)
+                if(mouseMoveSpeed > 450)
                 {
-                    print("aa");
-                }
+                    float dustAmount = (mouseMoveSpeed == 0) ? 0 : 10 / mouseMoveSpeed;                  
+                    GameMgr.I.dust += dustAmount;
+                }               
+            }
+
+            wasAtMaxLimit = isAtMaxLimit;
+
+            // 불 생성량 증가
+            if (mouseStickY > 0f && !isAtMaxLimit)
+            {
+                float moveAmount = Mathf.Clamp(mouseStickY, minY, maxY); ;
                 woodfriction = Mathf.Clamp(woodfriction, 0, 1);
                 GameMgr.I.fireGenerater += moveAmount * resistance * woodfriction;
-                woodfriction = woodfriction - moveAmount/ woodfrictiondecrese;               
+                woodfriction = woodfriction - moveAmount / woodfrictiondecrese;
             }
             else
             {
                 GameMgr.I.fireGenerater -= decreaseRate * decreaseTime;
-            }          
-            Vector3 targetPosition = Stick.position;
-            targetPosition.z += mouseY;
-            targetPosition.z = Mathf.Clamp(targetPosition.z, minY, maxY);
-            Stick.position = targetPosition;            
+            }
         }
         else
         {
@@ -55,3 +70,4 @@ public class MakingFire : MonoBehaviour
         }
     }
 }
+

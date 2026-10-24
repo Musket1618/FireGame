@@ -7,7 +7,8 @@ public class GameMgr : MonoBehaviour
     public static GameMgr I;
     public float fireGenerater = 0;
     public GameObject Spark;
-    public GameObject Smoke;
+    public GameObject Smoke;  
+    public float dust;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -22,11 +23,11 @@ public class GameMgr : MonoBehaviour
     // Update is called once per frame
     public void Update()
         {
-            if(fireGenerater >= 1)
+            if(fireGenerater >= 1 && dust >= 1f)
             {
               Fire();
             }
-        if (fireGenerater >= 0.8)
+        if (fireGenerater >= 0.3f && dust >= 0.5f)
         {
             getSmoke();
         }
