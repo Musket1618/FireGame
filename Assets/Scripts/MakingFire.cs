@@ -5,8 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class MakingFire : MonoBehaviour
-{
-    public bool isReadytoFire = false;
+{  
     public Transform Stick;
     public float moveSpeed;
     public float minY;
@@ -22,17 +21,19 @@ public class MakingFire : MonoBehaviour
 
     void Update()
     {
-        GameMgr.I.fireGenerater = Mathf.Clamp(GameMgr.I.fireGenerater, minY, maxY);
+        GameMgr.I.fireGenerater = Mathf.Clamp(GameMgr.I.fireGenerater, minY, maxY);                      
         if (Input.GetMouseButton(0))
         {
-            isReadytoFire = true;
-
-            // Stick 움직이기
             float mouseStickY = Input.GetAxis("Mouse Y") * moveSpeed;
-            Vector3 targetPosition = Stick.position;
-            targetPosition.z += mouseStickY;
-            targetPosition.z = Mathf.Clamp(targetPosition.z, minY, maxY);
-            Stick.position = targetPosition;
+            if (GameMgr.I.canMakeFire)
+            {
+                // Stick 움직이기
+                
+                Vector3 targetPosition = Stick.position;
+                targetPosition.z += mouseStickY;
+                targetPosition.z = Mathf.Clamp(targetPosition.z, minY, maxY);
+                Stick.position = targetPosition;
+            }
 
             // Dust 효과
             float moveY = Input.GetAxis("Mouse Y");
@@ -66,8 +67,9 @@ public class MakingFire : MonoBehaviour
         else
         {
             GameMgr.I.fireGenerater -= decreaseRate * decreaseTime;
-            isReadytoFire = false;
+            
         }
+
     }
 }
 

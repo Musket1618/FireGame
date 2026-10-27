@@ -6,10 +6,13 @@ public class GameMgr : MonoBehaviour
 {
     public static GameMgr I;
     public float fireGenerater = 0;
+    public float BlowAmount = 0;
     public GameObject Spark;
     public GameObject Smoke;
     public float dust;
     public bool canMakeFire = true;
+    public bool canMoveFire = false;
+    public bool canBlowFire = false;
     private State _state;
     public State currentState;
     // Start is called before the first frame update
@@ -66,7 +69,7 @@ public class GameMgr : MonoBehaviour
         switch (_state)
         {
             case State.MakingFire:
-
+                canMakeFire = true;
                 break;
 
             case State.MovingFire:
