@@ -18,6 +18,7 @@ public class MakingFire : MonoBehaviour
     public float woodfrictiondecrese;
 
     private bool wasAtMaxLimit = false;
+    private bool isAtMaxLimit;
 
     void Update()
     {
@@ -33,13 +34,24 @@ public class MakingFire : MonoBehaviour
                 targetPosition.z += mouseStickY;
                 targetPosition.z = Mathf.Clamp(targetPosition.z, minY, maxY);
                 Stick.position = targetPosition;
+                if (mouseStickY > 0f && !isAtMaxLimit)
+                {
+                    float moveAmount = Mathf.Clamp(mouseStickY, minY, maxY); ;
+                    woodfriction = Mathf.Clamp(woodfriction, 0, 1);
+                    GameMgr.I.fireGenerater += moveAmount * resistance * woodfriction;
+                    woodfriction = woodfriction - moveAmount / woodfrictiondecrese;
+                }
+                else
+                {
+                    GameMgr.I.fireGenerater -= decreaseRate * decreaseTime;
+                }
             }
 
             // Dust 효과
             float moveY = Input.GetAxis("Mouse Y");
             mouseMoveSpeed = moveY / Time.deltaTime;
 
-            bool isAtMaxLimit = Stick.position.z >= maxY;
+            isAtMaxLimit = Stick.position.z >= maxY;
             if (isAtMaxLimit && !wasAtMaxLimit)
             {
                 if(mouseMoveSpeed > 450)
@@ -49,20 +61,7 @@ public class MakingFire : MonoBehaviour
                 }               
             }
 
-            wasAtMaxLimit = isAtMaxLimit;
-
-            // 불 생성량 증가
-            if (mouseStickY > 0f && !isAtMaxLimit)
-            {
-                float moveAmount = Mathf.Clamp(mouseStickY, minY, maxY); ;
-                woodfriction = Mathf.Clamp(woodfriction, 0, 1);
-                GameMgr.I.fireGenerater += moveAmount * resistance * woodfriction;
-                woodfriction = woodfriction - moveAmount / woodfrictiondecrese;
-            }
-            else
-            {
-                GameMgr.I.fireGenerater -= decreaseRate * decreaseTime;
-            }
+            wasAtMaxLimit = isAtMaxLimit;                 
         }
         else
         {

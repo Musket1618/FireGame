@@ -13,6 +13,7 @@ public class GameMgr : MonoBehaviour
     public bool canMakeFire = true;
     public bool canMoveFire = false;
     public bool canBlowFire = false;
+    public bool isFire = false;
     private State _state;
     public State currentState;
     // Start is called before the first frame update
