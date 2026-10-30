@@ -4,6 +4,7 @@ using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class MakingFire : MonoBehaviour
 {  
     public Transform Stick;
@@ -47,7 +48,7 @@ public class MakingFire : MonoBehaviour
                 else
                 {
                     GameMgr.I.fireGenerater -= decreaseRate * decreaseTime;
-                }
+                }                
             }
 
             // Dust È¿°ú
