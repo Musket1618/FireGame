@@ -63,6 +63,7 @@ public class GameMgr : MonoBehaviour
     public void Fire()
     {
         Spark.SetActive(true);
+        isFire = true;
     }
     public void ChangeState(State state)
     {

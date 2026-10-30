@@ -928,9 +928,10 @@ MonoBehaviour:
   Spark: {fileID: 1357132122}
   Smoke: {fileID: 8325072855974114361}
   dust: 0
-  canMakeFire: 0
+  canMakeFire: 1
   canMoveFire: 0
-  canBlowFire: 1
+  canBlowFire: 0
+  isFire: 0
   currentState: 1
 --- !u!4 &1455259760
 Transform:
@@ -1177,8 +1178,10 @@ MonoBehaviour:
   minY: 0
   maxY: 1
   resistance: 0.0125
-  decreaseRate: 0.001
+  decreaseRate: 0.025
   decreaseTime: 0.025
+  dustDecreaseRate: 0.025
+  dustDecreaseTime: 0.025
   mouseMoveSpeed: 0
   woodfriction: 1
   woodfrictiondecrese: 300

@@ -12,7 +12,9 @@ public class MakingFire : MonoBehaviour
     public float maxY;
     public float resistance;
     public float decreaseRate;
-    public float decreaseTime;  
+    public float decreaseTime;
+    public float dustDecreaseRate;
+    public float dustDecreaseTime;
     public float mouseMoveSpeed;
     public float woodfriction;
     public float woodfrictiondecrese;
@@ -22,6 +24,7 @@ public class MakingFire : MonoBehaviour
 
     void Update()
     {
+        GameMgr.I.dust = Mathf.Clamp(GameMgr.I.dust, 0, 100);
         GameMgr.I.fireGenerater = Mathf.Clamp(GameMgr.I.fireGenerater, minY, maxY);                      
         if (Input.GetMouseButton(0))
         {
@@ -58,6 +61,7 @@ public class MakingFire : MonoBehaviour
                 {
                     float dustAmount = (mouseMoveSpeed == 0) ? 0 : 10 / mouseMoveSpeed;                  
                     GameMgr.I.dust += dustAmount;
+                    
                 }               
             }
 
@@ -67,6 +71,10 @@ public class MakingFire : MonoBehaviour
         {
             GameMgr.I.fireGenerater -= decreaseRate * decreaseTime;
             
+        }
+        if (GameMgr.I.isFire)
+        {
+            GameMgr.I.dust -= dustDecreaseRate * dustDecreaseTime;
         }
 
     }
