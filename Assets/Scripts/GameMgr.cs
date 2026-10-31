@@ -72,14 +72,20 @@ public class GameMgr : MonoBehaviour
         {
             case State.MakingFire:
                 canMakeFire = true;
+                canMoveFire = false;
+                canBlowFire = false;
                 break;
 
             case State.MovingFire:
-
+                canMakeFire = false;
+                canMoveFire = true;
+                canBlowFire = false;
                 break;
 
             case State.BlowingFire:
-
+                canMakeFire = false;
+                canMoveFire = false;
+                canBlowFire = true;
                 break;
         }
     }
