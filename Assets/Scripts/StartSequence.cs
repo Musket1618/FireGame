@@ -11,12 +11,9 @@ public class StartSequence : MonoBehaviour
     public Transform TinderDefaultPosition;
     public Transform TinderBlowPosition;
     public Transform CameraMovePosition;
-    public Transform CameraMoveRotation;
     public Transform CameraDefaultPosition;
-    public Transform CameraDefaultRotation;
     public Transform PlankDefaultRotation;
-    public Transform CameraBlowPosition;
-    public Transform CameraBlowRotation;
+    public Transform CameraBlowPosition;   
     public GameObject Tinder;
     public GameObject Camera;
     public GameObject Plank;
@@ -34,7 +31,7 @@ public class StartSequence : MonoBehaviour
         MakeFire
             .Join(Tinder.transform.DOMove(TinderDefaultPosition.position, 0.3f))
             .Join(Camera.transform.DOMove(CameraDefaultPosition.position, 0.3f))
-            .Join(Camera.transform.DORotateQuaternion(CameraDefaultRotation.rotation, 0.3f))
+            .Join(Camera.transform.DORotateQuaternion(CameraDefaultPosition.rotation, 0.3f))
             .Join(Plank.transform.DORotateQuaternion(PlankDefaultRotation.rotation, 0.3f))
             .AppendCallback(() =>
             {
@@ -55,7 +52,7 @@ public class StartSequence : MonoBehaviour
         MoveFire
             .Join(Tinder.transform.DOMove(TinderMovePosition.position, 0.3f))
             .Join(Camera.transform.DOMove(CameraMovePosition.position, 0.3f))
-            .Join(Camera.transform.DORotateQuaternion(CameraMoveRotation.rotation, 0.3f))
+            .Join(Camera.transform.DORotateQuaternion(CameraMovePosition.rotation, 0.3f))
             .AppendCallback(() =>
             {
 
@@ -75,7 +72,7 @@ public class StartSequence : MonoBehaviour
         BlowFire
             .Join(Tinder.transform.DOMove(TinderBlowPosition.position, 0.3f))
             .Join(Camera.transform.DOMove(CameraBlowPosition.position, 0.3f))
-            .Join(Camera.transform.DORotateQuaternion(CameraBlowRotation.rotation, 0.3f))
+            .Join(Camera.transform.DORotateQuaternion(CameraBlowPosition.rotation, 0.3f))
             .Join(Plank.transform.DORotateQuaternion(PlankDefaultRotation.rotation, 0.3f))
             .AppendCallback(() =>
             {
