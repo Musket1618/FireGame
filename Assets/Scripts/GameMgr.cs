@@ -7,6 +7,7 @@ public class GameMgr : MonoBehaviour
     public static GameMgr I;
     public float fireGenerater = 0;
     public float BlowAmount = 0;
+    public StartSequence StartSequence;
     public GameObject Spark;
     public GameObject Smoke;
     public float dust;
@@ -53,6 +54,18 @@ public class GameMgr : MonoBehaviour
         {
             Smoke.SetActive(false);
         }
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeState(State.MakingFire);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeState(State.MovingFire);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeState(State.BlowingFire);
+        }
     }
 
 
@@ -74,18 +87,21 @@ public class GameMgr : MonoBehaviour
                 canMakeFire = true;
                 canMoveFire = false;
                 canBlowFire = false;
+                StartSequence.MakeFire();
                 break;
 
             case State.MovingFire:
                 canMakeFire = false;
                 canMoveFire = true;
                 canBlowFire = false;
+                StartSequence.MoveFire();
                 break;
 
             case State.BlowingFire:
                 canMakeFire = false;
                 canMoveFire = false;
                 canBlowFire = true;
+                StartSequence.BlowFire();
                 break;
         }
     }
