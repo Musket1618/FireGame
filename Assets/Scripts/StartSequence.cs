@@ -29,13 +29,21 @@ public class StartSequence : MonoBehaviour
         //RArm.transform.position = GuideMgr.GetGuidePos(guideIndex);
         Sequence MakeFire = DOTween.Sequence();
         MakeFire
-            .Join(Tinder.transform.DOMove(TinderDefaultPosition.position, 0.3f))
+             .AppendCallback(() =>
+             {
+                 GameMgr.I.canMakeFire = false;
+                 GameMgr.I.canMoveFire = false;
+                 GameMgr.I.canBlowFire = false;
+             })
+            .Append(Tinder.transform.DOMove(TinderDefaultPosition.position, 0.3f))
             .Join(Camera.transform.DOMove(CameraDefaultPosition.position, 0.3f))
             .Join(Camera.transform.DORotateQuaternion(CameraDefaultPosition.rotation, 0.3f))
             .Join(Plank.transform.DORotateQuaternion(PlankDefaultRotation.rotation, 0.3f))
             .AppendCallback(() =>
             {
-
+                GameMgr.I.canMakeFire = true;
+                GameMgr.I.canMoveFire = false;
+                GameMgr.I.canBlowFire = false;
             });
         yield return MakeFire.WaitForCompletion();
     }
@@ -50,12 +58,20 @@ public class StartSequence : MonoBehaviour
         //RArm.transform.position = GuideMgr.GetGuidePos(guideIndex);
         Sequence MoveFire = DOTween.Sequence();
         MoveFire
-            .Join(Tinder.transform.DOMove(TinderMovePosition.position, 0.3f))
+             .AppendCallback(() =>
+             {
+                 GameMgr.I.canMakeFire = false;
+                 GameMgr.I.canMoveFire = false;
+                 GameMgr.I.canBlowFire = false;
+             })
+            .Append(Tinder.transform.DOMove(TinderMovePosition.position, 0.3f))
             .Join(Camera.transform.DOMove(CameraMovePosition.position, 0.3f))
             .Join(Camera.transform.DORotateQuaternion(CameraMovePosition.rotation, 0.3f))
             .AppendCallback(() =>
             {
-
+                GameMgr.I.canMakeFire = false;
+                GameMgr.I.canMoveFire = true;
+                GameMgr.I.canBlowFire = false;
             });
         yield return MoveFire.WaitForCompletion();
     }
@@ -70,13 +86,21 @@ public class StartSequence : MonoBehaviour
         //RArm.transform.position = GuideMgr.GetGuidePos(guideIndex);
         Sequence BlowFire = DOTween.Sequence();
         BlowFire
-            .Join(Tinder.transform.DOMove(TinderBlowPosition.position, 0.3f))
+            .AppendCallback(() =>
+            {
+                GameMgr.I.canMakeFire = false;
+                GameMgr.I.canMoveFire = false;
+                GameMgr.I.canBlowFire = false;
+            })
+            .Append(Tinder.transform.DOMove(TinderBlowPosition.position, 0.3f))
             .Join(Camera.transform.DOMove(CameraBlowPosition.position, 0.3f))
             .Join(Camera.transform.DORotateQuaternion(CameraBlowPosition.rotation, 0.3f))
             .Join(Plank.transform.DORotateQuaternion(PlankDefaultRotation.rotation, 0.3f))
             .AppendCallback(() =>
             {
-
+                GameMgr.I.canMakeFire = false;
+                GameMgr.I.canMoveFire = false;
+                GameMgr.I.canBlowFire = true;
             });
         yield return BlowFire.WaitForCompletion();
     }

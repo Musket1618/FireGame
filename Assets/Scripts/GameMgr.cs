@@ -84,23 +84,14 @@ public class GameMgr : MonoBehaviour
         switch (_state)
         {
             case State.MakingFire:
-                canMakeFire = true;
-                canMoveFire = false;
-                canBlowFire = false;
                 StartSequence.MakeFire();
                 break;
 
             case State.MovingFire:
-                canMakeFire = false;
-                canMoveFire = true;
-                canBlowFire = false;
                 StartSequence.MoveFire();
                 break;
 
-            case State.BlowingFire:
-                canMakeFire = false;
-                canMoveFire = false;
-                canBlowFire = true;
+            case State.BlowingFire:               
                 StartSequence.BlowFire();
                 break;
         }
