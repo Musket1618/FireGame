@@ -103,23 +103,5 @@ public class StartSequence : MonoBehaviour
                 GameMgr.I.canBlowFire = true;
             });
         yield return BlowFire.WaitForCompletion();
-    }
-
-    public void BiggerFire()
-    {
-        StartCoroutine(co_BiggerFire());
-    }
-
-    public IEnumerator co_BiggerFire()
-    {
-        //RArm.transform.position = GuideMgr.GetGuidePos(guideIndex);
-        Sequence BiggerFire = DOTween.Sequence();
-        BiggerFire
-            //.Join(Tinder.transform.DOMove(TinderMovePosition.position, 0.3f))
-            .AppendCallback(() =>
-            {
-
-            });
-        yield return BiggerFire.WaitForCompletion();
-    }
+    }  
 }

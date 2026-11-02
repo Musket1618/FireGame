@@ -40,7 +40,7 @@ public class MakingFire : MonoBehaviour
                 Stick.position = targetPosition;
                 if (mouseStickY > 0f && !isAtMaxLimit)
                 {
-                    float moveAmount = Mathf.Clamp(mouseStickY, minY, maxY); ;
+                    float moveAmount = Mathf.Clamp(mouseStickY, minY, maxY);
                     woodfriction = Mathf.Clamp(woodfriction, 0, 1);
                     GameMgr.I.fireGenerater += moveAmount * resistance * woodfriction;
                     woodfriction = woodfriction - moveAmount / woodfrictiondecrese;

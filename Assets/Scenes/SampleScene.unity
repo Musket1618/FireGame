@@ -849,7 +849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08b2afb652d3494a975c4aa2297ee20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blowResistance: 1
+  blowResistance: 0.001
+  FireOnTinder: {fileID: 1377280161}
+  FireSize: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,7 +1868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8295591563862043295, guid: e01f2e62cf41a3449be2dade3b2c2d79, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -1917,7 +1919,7 @@ MonoBehaviour:
   canMakeFire: 1
   canMoveFire: 0
   canBlowFire: 0
-  isFire: 0
+  isFire: 1
   currentState: 0
 --- !u!4 &1455259760
 Transform:
