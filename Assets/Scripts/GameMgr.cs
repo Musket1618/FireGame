@@ -81,8 +81,8 @@ public class GameMgr : MonoBehaviour
             case State.MakingFire:
                 StartSequence.MakeFire();
                 break;         
-            case State.BlowingFire:               
-                StartSequence.BlowFire();
+            case State.BlowingFire:
+                StartSequence.MoveFire();
                 break;
         }
     }

@@ -17,7 +17,7 @@ public class BlowingFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FireSize = Mathf.Clamp(FireSize, 0, 0.41f);
+        FireSize = Mathf.Clamp(FireSize, 0, 0.7f);
         GameMgr.I.BlowAmount = Mathf.Clamp(GameMgr.I.BlowAmount, 0, 100);
         if (Input.GetMouseButton(0))
         {
@@ -26,8 +26,11 @@ public class BlowingFire : MonoBehaviour
             {
                 float blowAmout = Mathf.Clamp(mouseMoveAmout, 0, 100) * blowResistance;               
                 GameMgr.I.BlowAmount += blowAmout;
-                FireSize += blowAmout;
-                FireOnTinder.localScale = new Vector3(FireSize, FireSize, FireSize);
+                if(GameMgr.I.isFire)
+                {
+                    FireSize += blowAmout;
+                    FireOnTinder.localScale = new Vector3(FireSize, FireSize, FireSize);
+                }               
             }
         }       
     }
