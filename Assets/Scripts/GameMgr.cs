@@ -8,12 +8,14 @@ public class GameMgr : MonoBehaviour
     public float fireGenerater = 0;
     public float BlowAmount = 0;
     public StartSequence StartSequence;
+    public MakingFire MakingFire;
     public GameObject Spark;
     public GameObject Smoke;
     public float dust;
     public bool canMakeFire = true;
     public bool canBlowFire = false;
     public bool isFire = false;
+    public bool isMove = false;
     private State _state;
     public State currentState;
     // Start is called before the first frame update
@@ -27,8 +29,8 @@ public class GameMgr : MonoBehaviour
         /// 
         /// </summary>
         MakingFire,
-        MovingFire,
         BlowingFire,
+        Reloading,
     }
 
 
@@ -61,6 +63,15 @@ public class GameMgr : MonoBehaviour
         {
             ChangeState(State.BlowingFire);
         }
+        if (Input.GetKeyDown(KeyCode.R) && isMove)
+        {
+            ChangeState(State.Reloading);
+        }
+        if (dust <= 0.9f)
+        {
+            Spark.SetActive(false);
+            isFire = false;
+        }
     }
 
 
@@ -83,6 +94,13 @@ public class GameMgr : MonoBehaviour
                 break;         
             case State.BlowingFire:
                 StartSequence.MoveFire();
+                break;
+            case State.Reloading:
+                StartSequence.Reloading();
+                dust = 0;
+                MakingFire.woodfriction = 1;
+                fireGenerater = 0;
+                BlowAmount = 0;
                 break;
         }
     }
