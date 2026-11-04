@@ -16,8 +16,7 @@ public class MakingFire : MonoBehaviour
     public float decreaseTime;
     public float dustDecreaseRate;
     public float dustDecreaseTime;
-    public float mouseMoveSpeed;
-    public float woodfriction;
+    public float mouseMoveSpeed;   
     public float woodfrictiondecrese;
 
     private bool wasAtMaxLimit = false;
@@ -41,9 +40,9 @@ public class MakingFire : MonoBehaviour
                 if (mouseStickY > 0f && !isAtMaxLimit)
                 {
                     float moveAmount = Mathf.Clamp(mouseStickY, minY, maxY);
-                    woodfriction = Mathf.Clamp(woodfriction, 0, 1);
-                    GameMgr.I.fireGenerater += moveAmount * resistance * woodfriction;
-                    woodfriction = woodfriction - moveAmount / woodfrictiondecrese;
+                    GameMgr.I.woodfriction = Mathf.Clamp(GameMgr.I.woodfriction, 0, 1);
+                    GameMgr.I.fireGenerater += moveAmount * resistance * GameMgr.I.woodfriction;
+                    GameMgr.I.woodfriction = GameMgr.I.woodfriction - moveAmount / woodfrictiondecrese;
                 }
                 else
                 {

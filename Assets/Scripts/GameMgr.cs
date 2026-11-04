@@ -12,6 +12,7 @@ public class GameMgr : MonoBehaviour
     public GameObject Spark;
     public GameObject Smoke;
     public float dust;
+    public float woodfriction;
     public bool canMakeFire = true;
     public bool canBlowFire = false;
     public bool isFire = false;
@@ -98,7 +99,7 @@ public class GameMgr : MonoBehaviour
             case State.Reloading:
                 StartSequence.Reloading();
                 dust = 0;
-                MakingFire.woodfriction = 1;
+                woodfriction = 1;
                 fireGenerater = 0;
                 BlowAmount = 0;
                 break;
