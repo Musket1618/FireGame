@@ -14,6 +14,12 @@ public class BlowingFire : MonoBehaviour
         FireOnTinder.localScale = new Vector3(FireSize, FireSize, FireSize);
     }
 
+    public void Reload()
+    {
+        FireSize = 0;
+        FireOnTinder.localScale = new Vector3(FireSize, FireSize, FireSize);
+    }
+
     // Update is called once per frame
     void Update()
     {

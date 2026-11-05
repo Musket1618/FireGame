@@ -10,6 +10,7 @@ public class GameMgr : MonoBehaviour
     public float BlowAmount = 0;
     public StartSequence StartSequence;
     public MakingFire MakingFire;
+    public BlowingFire BlowingFire;
     public GameObject Spark;
     public GameObject Smoke;
     public GameObject Dustpile;
@@ -128,10 +129,15 @@ public class GameMgr : MonoBehaviour
                 break;
             case State.Reloading:
                 StartSequence.Reloading();
-                dust = 0;
+                SetDust(0);
                 woodfriction = 1;
                 fireGenerater = 0;
                 BlowAmount = 0;
+                Smoke.SetActive(false);
+                Spark.SetActive(false);
+                isFire = false;
+                ClearText.gameObject.SetActive(false);
+                BlowingFire.Reload();
                 break;
         }
     }
