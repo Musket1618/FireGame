@@ -44,11 +44,11 @@ public class GameMgr : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (fireGenerater >= 1 && dust >= 1f)
+        if (fireGenerater >= 0.3f && dust >= 1)
         {
             Fire();
         }
-        if (fireGenerater >= 0.3f && dust >= 0.5f)
+        if (fireGenerater >= 0.15f && dust >= 0.5f)
         {
             getSmoke();
         }
@@ -68,7 +68,7 @@ public class GameMgr : MonoBehaviour
         {
             ChangeState(State.Reloading);
         }
-        if (dust <= 0.9f)
+        if (dust <= 0.6f)
         {
             Spark.SetActive(false);
             isFire = false;

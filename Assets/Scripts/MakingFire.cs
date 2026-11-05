@@ -59,7 +59,7 @@ public class MakingFire : MonoBehaviour
             {
                 if(mouseMoveSpeed > 450)
                 {
-                    float dustAmount = (mouseMoveSpeed == 0) ? 0 : 10 / mouseMoveSpeed;                  
+                    float dustAmount = (mouseMoveSpeed == 0) ? 0 : 30 / mouseMoveSpeed;                  
                     GameMgr.I.dust += dustAmount;
                     
                 }               

@@ -2195,6 +2195,7 @@ MonoBehaviour:
   Spark: {fileID: 1357132122}
   Smoke: {fileID: 8325072855974114361}
   dust: 0
+  woodfriction: 1
   canMakeFire: 1
   canBlowFire: 0
   isFire: 0
@@ -2555,7 +2556,6 @@ MonoBehaviour:
   dustDecreaseRate: 0.00625
   dustDecreaseTime: 0.00625
   mouseMoveSpeed: 0
-  woodfriction: 1
   woodfrictiondecrese: 300
 --- !u!1 &1623253901
 GameObject:
