@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameMgr : MonoBehaviour
@@ -11,8 +12,12 @@ public class GameMgr : MonoBehaviour
     public MakingFire MakingFire;
     public GameObject Spark;
     public GameObject Smoke;
+    public GameObject Dustpile;
+    public TextMeshProUGUI ClearText;
     public float dust;
     public float woodfriction;
+    public float dustpileScaleMin = 0.01f;
+    public float dustpileScaleMax = 0.24f;
     public bool canMakeFire = true;
     public bool canBlowFire = false;
     public bool isFire = false;
@@ -40,11 +45,14 @@ public class GameMgr : MonoBehaviour
         ChangeState(currentState);
         Spark.SetActive(false);
         Smoke.SetActive(false);
+        SetDust(dust);
+        ClearText.gameObject.SetActive(false);
     }
+
     // Update is called once per frame
     public void Update()
     {
-        if (fireGenerater >= 0.3f && dust >= 1)
+        if (fireGenerater >= 0.2f && dust >= 0.8f)
         {
             Fire();
         }
@@ -85,6 +93,28 @@ public class GameMgr : MonoBehaviour
         Spark.SetActive(true);
         isFire = true;
     }
+    public void SetDust(float dust)
+    {
+        this.dust = dust;
+        if (dust >= 0.4f)
+        {
+            Dustpile.GetComponent<MeshRenderer>().material.color = Color.black;
+        }
+        else
+        {
+            Dustpile.GetComponent<MeshRenderer>().material.color = Color.gray;
+        }
+
+        if (dust <= 0.01)
+        {
+            Dustpile.transform.localScale = Vector3.zero;
+        }
+        else
+        {
+            Dustpile.transform.localScale = Vector3.one * Mathf.Clamp(dust, dustpileScaleMin, dustpileScaleMax);
+        }
+    }
+
     public void ChangeState(State state)
     {
         _state = state;

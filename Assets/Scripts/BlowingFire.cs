@@ -17,6 +17,10 @@ public class BlowingFire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(FireSize >= 0.7f)
+        {
+            GameMgr.I.ClearText.gameObject.SetActive(true);
+        }
         FireSize = Mathf.Clamp(FireSize, 0, 0.7f);
         GameMgr.I.BlowAmount = Mathf.Clamp(GameMgr.I.BlowAmount, 0, 100);
         if (Input.GetMouseButton(0))
