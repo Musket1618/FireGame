@@ -2587,6 +2587,7 @@ MonoBehaviour:
   BlowAmount: 0
   StartSequence: {fileID: 2077672183}
   MakingFire: {fileID: 1611023033}
+  BlowingFire: {fileID: 906195392}
   Spark: {fileID: 1357132122}
   Smoke: {fileID: 8325072855974114361}
   Dustpile: {fileID: 1967817688}
